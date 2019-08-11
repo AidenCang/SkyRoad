@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skyroad/navigator/chat_page.dart';
 import 'package:skyroad/navigator/drawer_page.dart';
 import 'package:skyroad/navigator/home_page.dart';
 import 'package:skyroad/navigator/my_page.dart';
@@ -31,7 +32,7 @@ class _GosundTabViewState extends State<GosundTabView>
   @override
   void initState() {
     // TODO: implement initState
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _pageController = PageController();
     super.initState();
   }
@@ -56,7 +57,7 @@ class _GosundTabViewState extends State<GosundTabView>
         body: PageView(
           physics: NeverScrollableScrollPhysics(),
           controller: _pageController,
-          children: <Widget>[HomePage(), SmartPage(), MyPage()],
+          children: <Widget>[HomePage(), SmartPage(), ChatPage(), MyPage()],
           onPageChanged: (index) {
             _tabController.animateTo(index);
           },
@@ -70,9 +71,10 @@ class _GosundTabViewState extends State<GosundTabView>
             indicator: const BoxDecoration(),
             controller: _tabController,
             tabs: [
-              _renderTab(Icons.home, "homePage"),
-              _renderTab(Icons.smartphone, "SmartPage"),
-              _renderTab(Icons.memory, "MyPage")
+              _renderTab(Icons.home, "home"),
+              _renderTab(Icons.smartphone, "Smart"),
+              _renderTab(Icons.chat, "chat"),
+              _renderTab(Icons.memory, "My"),
             ],
             onTap: (index) {
 //              _pageController.jumpTo(MediaQuery.of(context).size.width * index);
@@ -81,7 +83,4 @@ class _GosundTabViewState extends State<GosundTabView>
           )),
         ));
   }
-
-
-
 }
